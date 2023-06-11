@@ -1,16 +1,24 @@
-
+@if(auth()->check() && auth()->user()->role === 'admin')
 <div id="mySidebar" class="sidebar">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a class="nav-link active" href="">Home</a>
-    <a class="nav-link" href="">Meu Perfil</a>
-    <button class="dropdown-btn">Coletas<i class="bi bi-caret-down"></i>
+    <a class="nav-link active" href="{{ route('home') }}">Home</a>
+    <a class="nav-link" href="{{ route('user.edit') }}">Meu Perfil</a>
+    <a class="nav-link" href="{{ route('users') }}">Usuários</a>
+</div>
+@endif
+@if(auth()->check() && auth()->user()->role === 'user')
+<div id="mySidebar" class="sidebar">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a class="nav-link active" href="{{ route('home') }}">Home</a>
+    <a class="nav-link" href="{{ route('user.edit') }}">Meu Perfil</a>
+    <button class="dropdown-btn">Notícias<i class="bi bi-caret-down"></i>
     </button>
     <div class="dropdown-container">
-        <a href="">Solicitar Coleta</a>
-        <a href="">Minhas Solicitações</a>
+        <a href="{{ route('news.create') }}">Publicar Nova Notícia</a>
+        <a href="{{ route('user.news') }}">Minhas Notícias</a>
     </div>
-    <a class="nav-link" href="">Ranking</a>
 </div>
+@endif
 
 <script>
 

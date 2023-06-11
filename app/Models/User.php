@@ -23,6 +23,11 @@ class User extends Authenticatable
         'password',
         'role'
     ];
+    
+    public function news()
+    {
+        return $this->hasMany(News::class);
+    }
 
     /**
      * The attributes that should be hidden for serialization.
@@ -44,8 +49,5 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function news()
-    {
-        return $this->hasMany(News::class);
-    }
+    
 }

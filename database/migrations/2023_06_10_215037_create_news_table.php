@@ -13,14 +13,16 @@ return new class extends Migration
     {
         Schema::create('news', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id')->onDelete('cascade');
+            $table->unsignedBigInteger('user_id');
 
             $table->string('title');
-            $table->string('description');
+            $table->text('description');
             $table->string('thumbnail');
+            $table->string('tags');
+            $table->integer('views')->default(0);
             $table->timestamps();
             
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
