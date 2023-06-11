@@ -12,6 +12,15 @@
         </script>
     @endif
     <div class="container">
+        <label for="perPage" class="form-label">Notícias por página:</label>
+        <select name="perPage" id="perPage">
+            <option selected disabled>Selecione</option>
+            <option value="4">4</option>
+            <option value="6">6</option>
+            <option value="12">12</option>
+            <!-- Outras opções de quantidade de notícias por página -->
+        </select>
+
         <div class="row justify-content-center">
             @foreach ($news as $n)
                 <div class="col-md-6 mb-4">
@@ -28,16 +37,16 @@
                                             class="text-muted">{{ date('d/m/Y', strtotime($n->created_at)) }}</small></p>
                                     <a href="{{ route('news.show', $n->id) }}" class="btn btn-primary mt-auto">Ver Mais</a>
 
-                                    @if (optional(auth()->user())->role == 'admin' || ($n->user_id == optional(auth()->user())->id))
+                                    @if (optional(auth()->user())->role == 'admin' || $n->user_id == optional(auth()->user())->id)
                                         <hr>
                                         <div class="d-flex justify-content-center">
                                             <a href="{{ route('news.edit', $n->id) }}"
                                                 class="btn btn-primary me-2">Editar</a>
-                                           
-                                                <button type="submit" class="btn btn-primary delete-item ms-2"
+
+                                            <button type="submit" class="btn btn-primary delete-item ms-2"
                                                 data-item-id="{{ $n->id }}">Excluir</button>
 
-                                          
+
                                         </div>
                                     @endif
                                 </div>
@@ -47,10 +56,13 @@
                 </div>
             @endforeach
         </div>
+
+        <div class="pagination justify-content-center">
+            {{ $news->links('pagination::bootstrap-4') }}
+        </div>
+
     </div>
-
     <script>
-
         document.querySelectorAll('.delete-item').forEach(function(button) {
             button.addEventListener('click', function() {
                 var itemId = this.getAttribute('data-item-id');
@@ -74,6 +86,12 @@
                     }
                 });
             });
+        });
+    </script>
+    <script>
+        document.getElementById('perPage').addEventListener('change', function() {
+            var perPage = this.value;
+            window.location.href = '{{ route('home') }}?perPage=' + perPage;
         });
     </script>
 @endsection

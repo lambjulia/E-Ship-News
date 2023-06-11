@@ -10,12 +10,14 @@ use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Support\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class NewsController extends Controller
 {
-    public function allNews()
+    public function allNews(Request $request)
     {
-        $news = News::all();
+        $perPage = $request->input('perPage', 10);
+        $news = News::paginate($perPage);
         $images = NewsImages::all();
 
         return view('news.news-all', compact('news', 'images'));

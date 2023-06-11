@@ -218,3 +218,12 @@
     }
   }
 
+  .page-item.active .page-link {
+    color: #fff;
+    background-color: #164259;
+    border-color: #164259;
+}
+
+.page-link {
+  color: #164259;
+}
