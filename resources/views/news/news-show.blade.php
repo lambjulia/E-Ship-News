@@ -12,19 +12,20 @@
                                 <p class="card-text">{{ $news->description }}</p>
                                 <p class="card-text">Autor: {{ $news->user->name }}</p>
 
-                                <div class="row">
+                                <div class="row justify-content-center">
                                     <p class="card-text">Clique nas imagens para ampliá-las:</p>
                                     @foreach ($news->images as $image)
                                         <div class="col-md-3 d-flex mb-3">
                                             <div class="card" style="width: 18rem;">
-                                                
+
                                                 <img src="{{ asset($image->path) }}" alt="Imagem do produto"
-                                                    class="mx-auto d-block w-100 card-img-top" 
-                                                    data-bs-toggle="modal" data-bs-target="#modalImagem{{ asset($image->path) }}">
-                                                
+                                                    class="mx-auto d-block w-100 card-img-top" data-bs-toggle="modal"
+                                                    data-bs-target="#modalImagem{{ asset($image->path) }}">
+
                                             </div>
                                         </div>
-                                        <div class="modal fade" id="modalImagem{{ asset($image->path) }}" tabindex="-1" aria-labelledby="modalImagemLabel{{ asset($image->path) }}" aria-hidden="true">
+                                        <div class="modal fade" id="modalImagem{{ asset($image->path) }}" tabindex="-1"
+                                            aria-labelledby="modalImagemLabel{{ asset($image->path) }}" aria-hidden="true">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-body">
@@ -37,11 +38,14 @@
                                 </div>
 
 
+                                @php
+                                    $selectedOptions = explode(',', $news->tags);
+                                @endphp
 
                                 <div class="container">
                                     <div class="row">
                                         <p class="card-text">Tags:</p>
-                                        @foreach ($valores as $item)
+                                        @foreach ($selectedOptions as $item)
                                             <div class="col-md-2">
                                                 <div class="card border-primary">
                                                     <div class="card-body">
@@ -53,7 +57,7 @@
                                     </div>
                                 </div>
                                 <hr>
-                                
+
                                 <p class="card-text">{{ date('d/m/Y', strtotime($news->created_at)) }}</p>
                                 <p class="card-text">Visualizações: {{ $news->views }}</p>
 

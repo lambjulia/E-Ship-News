@@ -6,21 +6,28 @@ use App\Models\NewsImages;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\News;
-use App\Models\User;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
-use Illuminate\Support\Collection;
-use Illuminate\Pagination\LengthAwarePaginator;
 
 class NewsController extends Controller
 {
     public function allNews(Request $request)
     {
+
+        $tag = $request->input('tag');
+
+        if ($tag) {
+            $perPage = $request->input('perPage', 10);
+            $news = News::where('tags', 'LIKE', '%' . $tag . '%')->paginate($perPage);
+        }
+        
+        $format = $request->query('format', 'grid');
+        
         $perPage = $request->input('perPage', 10);
+        
         $news = News::paginate($perPage);
+        
         $images = NewsImages::all();
 
-        return view('news.news-all', compact('news', 'images'));
+        return view('news.news-all', compact('news', 'images', 'format'));
     }
 
     public function create()
@@ -161,11 +168,7 @@ class NewsController extends Controller
         $images = NewsImages::where('news_id', '=', $id)->get();
         $news->increment('views');
 
-        $selectedOptions = News::pluck('tags');
-        $stringArray = str_replace(['[', ']', '"'], '', $selectedOptions);
-        $valores = explode(",", $stringArray);
-
-        return view('news.news-show', compact('news', 'images', 'valores'));
+        return view('news.news-show', compact('news', 'images'));
     }
 
     public function destroyNews($id)
@@ -176,4 +179,20 @@ class NewsController extends Controller
 
         return redirect()->back()->with('news-delete', '402');
     }
+
+    public function filter(Request $request)
+    {
+        $query = News::query();
+
+        if ($request->filled('title')) {
+            $title = $request->title;
+            $query->where('title', 'like', "%$title%");
+        }
+
+        $perPage = $request->input('perPage', 10);
+        $news = $query->paginate($perPage);
+
+        return view('news.news-all', compact('news'))->render();
+    }
+
 }

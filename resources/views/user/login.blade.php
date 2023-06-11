@@ -47,9 +47,6 @@
                                     Entrar
                                 </button>
 
-                                <div class="text-center">
-                                    <a href="{{ route('forget.password.get') }}">Esqueci Minha Senha</a>
-                                </div>
                                 <hr>
                                 <div class="text-center">
                                     <a href="{{ route('user.create') }}" class="btn btn-primary">Se Cadastre Aqui
@@ -61,17 +58,16 @@
                 </div>
 
                 <div class="col-lg-6 mb-5 mb-lg-0" class="conteudo">
-                    <img src="{{ url('assets/img/jornais.png') }}" class="w-100 rounded-4 shadow-4 imagem" alt=""/>
+                    <img src="{{ url('assets/img/jornais.png') }}" class="w-100 rounded-4 shadow-4 imagem" alt="" />
                 </div>
             </div>
         </div>
     </section>
     <style>
-      /* Estilo para dispositivos móveis */
-      @media (max-width: 767px) {
-        .imagem {
-          display: none;
+        @media (max-width: 767px) {
+            .imagem {
+                display: none;
+            }
         }
-      }
     </style>
 @endsection

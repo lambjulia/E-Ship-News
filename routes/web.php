@@ -6,16 +6,6 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\NewsController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 Route::get('/', function () {
     return redirect()->route('home');
 });
@@ -23,50 +13,44 @@ Route::get('/', function () {
 Route::get('/home', [NewsController::class, 'allNews'])->name('home');
 
 //User
-Route::get('/login', [AuthController::class, 'login'])->name('login')->middleware(['guest']);
+Route::get('/login', [AuthController::class, 'login'])->name('login')->middleware(['guest'])->middleware(['guest']);
 
 Route::post('/authenticate', [AuthController::class, 'authenticate'])->name('authenticate');
 
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::get('forget-password', [AuthController::class, 'showForgetPasswordForm'])->name('forget.password.get')->middleware(['guest']);
-
-Route::post('forget-password', [AuthController::class, 'submitForgetPasswordForm'])->name('forget.password.post')->middleware(['guest']); 
-
-Route::get('reset-password/{token}', [AuthController::class, 'showResetPasswordForm'])->name('reset.password.get')->middleware(['guest']);
-
-Route::post('reset-password', [AuthController::class, 'submitResetPasswordForm'])->name('reset.password.post')->middleware(['guest']);
-
 Route::get('/criar-usuario', [UserController::class, 'create'])->name('user.create')->middleware(['guest']);
 
 Route::post('/store-usuario', [UserController::class, 'store'])->name('user.store');
 
-Route::get('/editar-usuario', [UserController::class, 'edit'])->name('user.edit');
+Route::get('/editar-usuario', [UserController::class, 'edit'])->name('user.edit')->middleware('checkUserRole:user');
 
-Route::post('/update-usuario', [UserController::class, 'update'])->name('user.update');
+Route::post('/update-usuario', [UserController::class, 'update'])->name('user.update')->middleware('checkUserRole:user');
 
-Route::get('/minhas-noticias', [UserController::class, 'myNews'])->name('user.news');
+Route::get('/minhas-noticias', [UserController::class, 'myNews'])->name('user.news')->middleware('checkUserRole:user');
 
 //News
-Route::get('/criar-noticia', [NewsController::class, 'create'])->name('news.create');
+Route::get('/criar-noticia', [NewsController::class, 'create'])->name('news.create')->middleware('checkUserRole:user');
 
-Route::post('/store-noticia', [NewsController::class, 'store'])->name('news.store');
+Route::post('/store-noticia', [NewsController::class, 'store'])->name('news.store')->middleware('checkUserRole:user');
 
 Route::get('/ver-noticia/{id}', [NewsController::class, 'show'])->name('news.show');
 
-Route::get('/editar-noticia/{id}', [NewsController::class, 'edit'])->name('news.edit');
+Route::get('/editar-noticia/{id}', [NewsController::class, 'edit'])->name('news.edit')->middleware('auth');
 
-Route::post('/update-noticia/{id}', [NewsController::class, 'update'])->name('news.update');
+Route::post('/update-noticia/{id}', [NewsController::class, 'update'])->name('news.update')->middleware('auth');
 
-Route::delete('/image-delete/{id}', [NewsController::class, 'destroyImage'])->name('image.delete');
+Route::delete('/image-delete/{id}', [NewsController::class, 'destroyImage'])->name('image.delete')->middleware('auth');
 
-Route::delete('/news-delete/{id}', [NewsController::class, 'destroyNews'])->name('news.delete');
+Route::delete('/news-delete/{id}', [NewsController::class, 'destroyNews'])->name('news.delete')->middleware('auth');
+
+Route::get('/filter', [NewsController::class, 'filter'])->name('news.filter');
 
 //Admin
-Route::get('/usuarios', [AdminController::class, 'allUsers'])->name('users');
+Route::get('/usuarios', [AdminController::class, 'allUsers'])->name('users')->middleware('checkUserRole:admin');
 
-Route::get('/admin/editar-usuario/{id}', [AdminController::class, 'edit'])->name('admin.user.edit');
+Route::get('/admin/editar-usuario/{id}', [AdminController::class, 'edit'])->name('admin.user.edit')->middleware('checkUserRole:admin');
 
-Route::post('/admin/update-usuario/{id}', [AdminController::class, 'update'])->name('admin.user.update');
+Route::post('/admin/update-usuario/{id}', [AdminController::class, 'update'])->name('admin.user.update')->middleware('checkUserRole:admin');
 
-Route::delete('/user-delete/{id}', [AdminController::class, 'destroyUser'])->name('user.delete');
+Route::delete('/user-delete/{id}', [AdminController::class, 'destroyUser'])->name('user.delete')->middleware('checkUserRole:admin');

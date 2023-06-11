@@ -5,7 +5,7 @@
         @endif
         <div class="mx-auto">
             <a href="{{ route('home') }}">
-            <img src="{{ url('assets/img/logo-news.png') }}" width="80px" height="80px">
+            <img src="{{ url('assets/img/logo.png') }}" width="auto" height="80px">
             </a>
         </div>
         @if (auth()->check())
