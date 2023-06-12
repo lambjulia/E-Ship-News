@@ -23,15 +23,15 @@ git clone https://github.com/lambjulia/E-Ship-News
 
 4- php artisan key:generate
 
-5 - php artisan migrate --seed -> de "yes" para criar o banco de dados
+5- php artisan storage:link
 
-6 - php artisan serve
+6 - php artisan migrate --seed -> de "yes" para criar o banco de dados
 
-7 - E abra o sistema no navegador utilizando: http://127.0.0.1:8000
+7 - php artisan serve
+
+8 - E abra o sistema no navegador utilizando: http://127.0.0.1:8000
 
 O sistema ja tem o usuário de admin cadastrado
 
 login: admin@admin.com
 senha: admin
-
-Caso as imagens não estejam aparecendo, apague a pasta public/storage e rode php artisan storage:link
