@@ -40,14 +40,6 @@
                                     <div class="alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>
-                            <div class="col-12">
-                                <label class="form-label">Senha</label>
-                                <input type="password" id="password" name="password"
-                                    class="form-control @error('password') is-invalid @enderror" placeholder="Senha com números e letras.">
-                                @error('password')
-                                    <div class="alert-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
                         </div>
                         <br>
                         <div class="card-footer">

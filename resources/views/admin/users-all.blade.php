@@ -36,11 +36,13 @@
                                             <td>{{ $u->name }}</td>
                                             <td>{{ $u->email }}</td>
                                             <td>{{ $u->news_count   }}</td>
-                                            <td><a href="{{ route('admin.user.edit', $u->id) }}"
-                                                class="btn btn-primary">Editar</a>
+                                            <td><div class="d-flex">
+                                                <a href="{{ route('admin.user.edit', $u->id) }}"
+                                                class="btn btn-primary me-2">Editar</a>
                                                 <button type="button" class="btn btn-primary delete-item" data-item-id="{{ $u->id }}">
                                                     Deletar
                                                 </button>
+                                                </div>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -53,7 +55,6 @@
         </div>
     </div>
     <script>
-        // Event listener para o botão de exclusão
         document.querySelectorAll('.delete-item').forEach(function(button) {
           button.addEventListener('click', function() {
             var itemId = this.getAttribute('data-item-id');

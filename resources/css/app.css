@@ -10,6 +10,7 @@
     color: #ffffff00;
   }
   
+
   .icon {
     color: #ffffff;
   }
@@ -52,7 +53,7 @@
     margin: 0;
     padding-bottom: 100px; 
     box-sizing: border-box;
-    font-family: "Times New Roman", Times, serif;
+    font-family: 'Open Sans';
   }
   
   footer {
@@ -96,9 +97,9 @@
     padding-top: 60px;
     transition: 0.5s;
     box-shadow: 0px 3px 3px 0px #164259 !important;
+
   }
   
-  /* The sidebar links */
   .sidebar a {
     padding: 8px 8px 8px 32px;
     text-decoration: none;
@@ -108,12 +109,10 @@
     transition: 0.3s;
   }
   
-  /* When you mouse over the navigation links, change their color */
   .sidebar a:hover {
     color: #164259;
   }
-  
-  /* Position and style the close button (top right corner) */
+
   .sidebar .closebtn {
     position: absolute;
     top: 0;
@@ -121,7 +120,6 @@
     font-size: 36px;
     margin-left: 50px;
   }
-
   
   .openbtn {
     font-size: 20px;
@@ -136,15 +134,11 @@
     background-color: #164259;
   }
   
-  /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
   #main {
     transition: margin-left .5s;
-    /* If you want a transition effect */
     padding: 20px;
   }
   
-  
-  /* Style the sidenav links and the dropdown button */
   .sidenav a, .dropdown-btn {
     border: none;
     background: none;
@@ -160,37 +154,32 @@
     transition: 0.3s;
   }
   
-  /* On mouse-over */
   .sidenav a:hover, .dropdown-btn:hover {
     color: #164259;
   }
   
-  /* Main content */
   .main {
-    margin-left: 200px; /* Same as the width of the sidenav */
-    font-size: 20px; /* Increased text to enable scrolling */
+    margin-left: 200px; 
+    font-size: 20px; 
     padding: 0px 10px;
   }
   
-  /* Add an active class to the active dropdown button */
   .active {
     background-color: rgb(255, 255, 255);
     color: #164259;
   }
   
-  /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
   .dropdown-container {
     display: none;
     background-color: #ffffff;
     padding-left: 8px;
   }
   
-  /* Optional: Style the caret down icon */
   .fa-caret-down {
     float: right;
     padding-right: 8px;
   }
-  /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+
   @media screen and (max-height: 450px) {
     .sidebar {
       padding-top: 15px;
@@ -226,4 +215,12 @@
 
 .page-link {
   color: #164259;
+}
+
+select.btn-mini {
+  border-color: #164259;
+}
+
+.btn:hover {
+  border-color: #164259;
 }

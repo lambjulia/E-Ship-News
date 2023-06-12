@@ -30,21 +30,16 @@ class AdminController extends Controller
             [
                 'name' => 'required',
                 'email' => 'required|email|unique:users,email,' . $user->id,
-                'password' => ['required', Password::min(8)
-                    ->letters()
-                    ->numbers()],
             ],
             [
                 'required' => 'O campo é obrigatório.',
                 'email.unique' => 'Este email ja esta sendo usado.',
                 'email.email' => 'Precisa ser um email válido.',
-                'password' => 'A senha precisa ter pelo menos 8 caracteres com números e letras.'
             ],
         );
 
         $user->name = $request->input('name');
         $user->email = $request->input('email');
-        $user->password = $request->input('password');
         $user->save();
 
         return redirect()->back()->with('user-update', '402');

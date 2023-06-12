@@ -11,20 +11,19 @@ class NewsController extends Controller
 {
     public function allNews(Request $request)
     {
-
         $tag = $request->input('tag');
 
+        $format = $request->query('format', 'grid');
+
+        $perPage = $request->input('perPage', 12);
+
+        $news = News::paginate($perPage);
+
         if ($tag) {
-            $perPage = $request->input('perPage', 10);
+            $perPage = $request->input('perPage', 12);
             $news = News::where('tags', 'LIKE', '%' . $tag . '%')->paginate($perPage);
         }
-        
-        $format = $request->query('format', 'grid');
-        
-        $perPage = $request->input('perPage', 10);
-        
-        $news = News::paginate($perPage);
-        
+
         $images = NewsImages::all();
 
         return view('news.news-all', compact('news', 'images', 'format'));
@@ -194,5 +193,4 @@ class NewsController extends Controller
 
         return view('news.news-all', compact('news'))->render();
     }
-
 }

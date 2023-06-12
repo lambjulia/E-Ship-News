@@ -23,9 +23,9 @@ Route::get('/criar-usuario', [UserController::class, 'create'])->name('user.crea
 
 Route::post('/store-usuario', [UserController::class, 'store'])->name('user.store');
 
-Route::get('/editar-usuario', [UserController::class, 'edit'])->name('user.edit')->middleware('checkUserRole:user');
+Route::get('/editar-usuario', [UserController::class, 'edit'])->name('user.edit')->middleware('auth');
 
-Route::post('/update-usuario', [UserController::class, 'update'])->name('user.update')->middleware('checkUserRole:user');
+Route::post('/update-usuario', [UserController::class, 'update'])->name('user.update')->middleware('auth');
 
 Route::get('/minhas-noticias', [UserController::class, 'myNews'])->name('user.news')->middleware('checkUserRole:user');
 

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
 
             $table->string('title');
-            $table->text('description');
+            $table->longText('description');
             $table->string('thumbnail');
             $table->string('tags');
             $table->integer('views')->default(0);

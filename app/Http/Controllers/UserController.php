@@ -8,6 +8,7 @@ use Illuminate\Validation\Rules\Password;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\News;
+use App\Models\NewsImages;
 
 class UserController extends Controller
 {
@@ -35,14 +36,16 @@ class UserController extends Controller
             ],
         );
 
-        User::create([
+        $user = User::create([
             'name' => $request->get('name'),
             'email' => $request->get('email'),
             'role' => 'user',
             'password' => Hash::make($request->password),
         ]);
 
-        return redirect()->route('login')->with('user-store', '402');
+        Auth::login($user);
+
+        return redirect()->route('home')->with('user-store', '402');
     }
 
     public function edit() 
@@ -84,11 +87,23 @@ class UserController extends Controller
         return redirect()->back()->with('user-update', '402');
     }
 
-    public function myNews()
+    public function myNews(Request $request)
     {
-        $userId = Auth::id();
-        $news = News::where('user_id', '=', $userId)->get();
-
+        
+        $tag = $request->input('tag');
+        $format = $request->query('format', 'grid');
+        $perPage = $request->input('perPage', 12);
+    
+        $user = Auth::user();
+        $newsQuery = $user->news();
+    
+        if ($tag) {
+            $newsQuery->where('tags', 'LIKE', '%' . $tag . '%');
+        }
+    
+        $news = $newsQuery->paginate($perPage);
+        $images = NewsImages::all();
+    
         return view('news.news-all', compact('news'));
     }
 
