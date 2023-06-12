@@ -7,7 +7,14 @@ O sistema tem 2 usuários, admin e usuário normal, os usuários normais podem s
 
 O admin tem acesso a tudo no sistema, podendo editar e excluir os usuários, também podendo editar e excluir as notícias publicadas por qualquer usuário. 
 
-Na página inicial mostra todas as notícias cadastradas , cada notícia tem uma página onde mostram todas as informações incluindo imagens e as tags relacionadas a ela. Na tela inicial é possível filtrar por tags e títulos, também é possível escolher a quantidade de notícias que mostra por página e o formato delas, em grid ou em linhas.  
+Na página inicial mostra todas as notícias cadastradas , cada notícia tem uma página onde mostram todas as informações incluindo imagens e as tags relacionadas a ela, ao clicar na tag o usuário é encaminhado a página inicial com o filtro da tag. Na tela inicial é possível filtrar por tags e títulos, também é possível escolher a quantidade de notícias que mostra por página e o formato delas, em grid ou em linhas.  
+
+O sistema ja tem o usuário de admin cadastrado
+
+login: admin@admin.com
+senha: admin
+
+E possui alguns users e notícias gerados por um seeder.
 # Como Rodar o Projeto
 
 - Abra o terminal e rode este comando
@@ -30,8 +37,3 @@ git clone https://github.com/lambjulia/E-Ship-News
 7 - php artisan serve
 
 8 - E abra o sistema no navegador utilizando: http://127.0.0.1:8000
-
-O sistema ja tem o usuário de admin cadastrado
-
-login: admin@admin.com
-senha: admin

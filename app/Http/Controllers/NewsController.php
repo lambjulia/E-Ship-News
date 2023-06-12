@@ -108,8 +108,7 @@ class NewsController extends Controller
             [
                 'title' => 'required',
                 'description' => 'required|min:10|max:2000',
-                'thumbnail' => 'required',
-                'image' => 'required|max:2048',
+                'image' => 'max:2048',
             ],
             [
                 'required' => 'Este campo é obrigatório.',
