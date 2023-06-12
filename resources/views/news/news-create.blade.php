@@ -26,7 +26,7 @@
                                     <label class="form-label">Título</label>
                                     <input type="text" id="title" name="title"
                                         class="form-control @error('title') is-invalid @enderror"
-                                        placeholder="Título da sua notícia">
+                                        placeholder="Título da sua notícia" value="{{ old('title') }}">
                                     @error('title')
                                         <div class="alert-danger">{{ $message }}</div>
                                     @enderror
@@ -34,7 +34,8 @@
                                 <div class="col-12">
                                     <label class="form-label">Descrição</label>
                                         <textarea class="form-control  @error('description') is-invalid @enderror"
-                                        placeholder="Escreva sua notícia aqui" id="description" name="description" rows="3"></textarea>
+                                        placeholder="Escreva sua notícia aqui" id="description"
+                                       name="description" rows="3">{{ old('description') }}</textarea>
                                     @error('description')
                                         <div class="alert-danger">{{ $message }}</div>
                                     @enderror
@@ -42,8 +43,8 @@
                                 <div class="col-12">
                                     <label class="form-label">Imagem de Capa</label>
                                     <input type="file" id="thumbnail" name="thumbnail" accept="image/*"
-                                        class="form-control @error('image') is-invalid @enderror">
-                                    @error('image')
+                                        class="form-control @error('thumbnail') is-invalid @enderror">
+                                    @error('thumbnail')
                                         <div class="alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>

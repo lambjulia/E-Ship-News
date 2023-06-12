@@ -47,7 +47,8 @@
                 <div class="mb-4">
                     <label for="format" class="form-label">Formato de Exibição:</label>
                     <select id="format" class="btn btn-mini">
-                        <option selected value="grid">Grid</option>
+                        <option selected disabled>Selecione</option>
+                        <option value="grid">Grid</option>
                         <option value="lines">Lines</option>
                     </select>
                 </div>
@@ -129,7 +130,7 @@
                         <div class="card">
                             <div class="row">
                                 <div class="col d-flex align-items-center">
-                                    <img src="{{ asset($n->thumbnail) }}" class="mx-auto card-img">
+                                    <img src="{{ asset($n->thumbnail) }}" class="mx-auto" style="max-height: 350px;">
                                 </div>
                                 <div class="col">
                                     <div class="card-body d-flex flex-column">
@@ -146,7 +147,9 @@
                                                 <p class="card-text">Tags: </p>
                                                 @foreach ($selectedOptions as $item)
                                                     <div>
+                                                        <a href="{{ route('home') }}?tag={{ $item }}">
                                                         <p> #{{ $item }}</p>
+                                                        </a>
                                                     </div>
                                                 @endforeach
                                             </div>

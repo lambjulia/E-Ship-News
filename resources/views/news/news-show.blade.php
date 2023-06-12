@@ -16,6 +16,7 @@
                                 <div class="text-center">
                                 <p class="card-text">{{ $news->description }}</p>
                                 </div>
+                                <hr>
                                 <div class="row justify-content-center">
                                     <p class="card-text">Clique nas imagens para ampliá-las:</p>
                                     @foreach ($news->images as $image)

@@ -41,12 +41,15 @@ class NewsController extends Controller
         $request->validate(
             [
                 'title' => 'required',
-                'description' => 'required',
+                'description' => 'required|min:10|max:2000',
                 'thumbnail' => 'required',
-                'image' => 'required',
+                'image' => 'required|max:2048',
             ],
             [
                 'required' => 'Este campo é obrigatório.',
+                'description.min' => 'O texto precisa ter mais de 10 caracteres.',
+                'description.max' => 'O texto pode ter no mmáximo 1000 caracteres.',
+                'image.max' => 'As imagens são muito grande.',
             ],
         );
 
@@ -104,12 +107,18 @@ class NewsController extends Controller
         $request->validate(
             [
                 'title' => 'required',
-                'description' => 'required',
+                'description' => 'required|min:10|max:2000',
+                'thumbnail' => 'required',
+                'image' => 'required|max:2048',
             ],
             [
                 'required' => 'Este campo é obrigatório.',
+                'description.min' => 'O texto precisa ter mais de 10 caracteres.',
+                'description.max' => 'O texto pode ter no mmáximo 1000 caracteres.',
+                'image.max' => 'As imagens são muito grande.',
             ],
         );
+
 
         $selectedOptions = $request->input('tags');
 
