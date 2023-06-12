@@ -6,7 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\News;
-use Faker\Factory as Faker;
+use Smknstd\FakerPicsumImages\FakerPicsumImagesProvider;
 
 class NewsSeeder extends Seeder
 {
@@ -16,6 +16,7 @@ class NewsSeeder extends Seeder
     public function run(): void
     {
         $faker = \Faker\Factory::create();
+        $faker->addProvider(new \Smknstd\FakerPicsumImages\FakerPicsumImagesProvider($faker));
 
         $tags = ['futebol', 'música', 'tecnologia', 'política', 'jogos'];
 
@@ -26,7 +27,7 @@ class NewsSeeder extends Seeder
             $news = new News();
             $title = $faker->sentence();
             $description = $faker->text(2000);
-            $thumbnail = $faker->imageUrl();
+            $thumbnail = $faker->imageUrl(800, 600); 
             $tags = $faker->randomElements($tags, 2);
             $userId = $faker->randomElement($userIds);
 
@@ -38,7 +39,7 @@ class NewsSeeder extends Seeder
             $news->save();
 
             for ($i = 1; $i <= 3; $i++) {
-                $image = $faker->imageUrl();
+                $image = $faker->imageUrl(800, 600);
 
                 $news->images()->create([
                     'image' => $image,
