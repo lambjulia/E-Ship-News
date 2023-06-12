@@ -11,7 +11,27 @@
             })
         </script>
     @endif
-
+@if (session('logout'))
+    <script>
+        Swal.fire({
+            position: 'top-end',
+            title: 'Você esta deslogado',
+            showConfirmButton: false,
+            timer: 1500
+        })
+    </script>
+@endif
+@if (session('login'))
+<script>
+    Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Você esta loggado',
+        showConfirmButton: false,
+        timer: 1500
+    })
+</script>
+@endif
     <div class="container">
         <div class="row">
             <div class="col-md-6">
