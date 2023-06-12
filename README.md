@@ -10,7 +10,6 @@ O admin tem acesso a tudo no sistema, podendo editar e excluir os usuários, tam
 Na página inicial mostra todas as notícias cadastradas , cada notícia tem uma página onde mostram todas as informações incluindo imagens e as tags relacionadas a ela. Na tela inicial é possível filtrar por tags e títulos, também é possível escolher a quantidade de notícias que mostra por página e o formato delas, em grid ou em linhas.  
 # Como Rodar o Projeto
 
-- A .env já esta no projeto
 - Abra o terminal e rode este comando
 git clone https://github.com/lambjulia/E-Ship-News
 
