@@ -19,7 +19,9 @@ git clone https://github.com/lambjulia/E-Ship-News
 
 2 - npm install
 
-4 - npm run dev
+3 - npm run dev
+
+4- php artisan key:generate
 
 5 - php artisan migrate --seed -> de "yes" para criar o banco de dados
 
