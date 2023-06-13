@@ -1,11 +1,13 @@
 <nav class="navbar navbar-light">
     <div class="container-fluid">
+        
         @if (auth()->check())
             <button class="openbtn" onclick="openNav()">&#9776;</button>
         @endif
+        
         <div class="logo">
             <a href="{{ route('home') }}">
-                <img src="{{ url('assets/img/logo.png') }}" width="auto" height="80px">
+                <img src="{{ url('assets/img/logo.png') }}"width="auto" height="80px">
             </a>
         </div>
 

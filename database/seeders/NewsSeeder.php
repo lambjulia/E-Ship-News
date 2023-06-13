@@ -28,7 +28,7 @@ class NewsSeeder extends Seeder
             $title = $faker->sentence();
             $description = $faker->text(2000);
             $thumbnail = $faker->imageUrl(800, 600); 
-            $tags = $faker->randomElements($tags, 2);
+            $tags = $faker->randomElements($tags, 5);
             $userId = $faker->randomElement($userIds);
 
             $news->title = $title;
