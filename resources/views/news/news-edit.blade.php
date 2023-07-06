@@ -131,7 +131,6 @@
         });
     </script>
     <script>
-        // Event listener para o botão de exclusão
         document.querySelectorAll('.delete-item').forEach(function(button) {
             button.addEventListener('click', function() {
                 var itemId = this.getAttribute('data-item-id');

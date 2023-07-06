@@ -24,7 +24,7 @@ class UserController extends Controller
             [
                 'name' => 'required',
                 'email' => 'required|email|unique:users',
-                'password' => ['required', Password::min(8)
+                'password' => [ Password::min(8)
                     ->letters()
                     ->numbers()],
             ],
